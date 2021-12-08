@@ -3,15 +3,14 @@
 #include <string>
 #include <iostream>
 
-class Crypto {
-  
+class Crypto {  
   public:
-
     Crypto(std::string message) : msg(message) {;}
     ~Crypto() = default;
     
     void showMsg();
     void charToDec();
+
   private:
     std::string msg;
 };
