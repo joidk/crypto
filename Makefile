@@ -6,6 +6,7 @@ DEPENDS			 	:= src/Crypto.cpp
 BIN_TESTER		:= bin/tester
 
 all : $(DEPENDS) $(BIN_TESTER)
+	test
 	
 test : $(DEPENDENCIES)
 	$(CC) $(CFLAGS) -o $(BIN_TESTER) tester.cpp $(DEPENDS) -I $(INCLUDES) 
