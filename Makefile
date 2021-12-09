@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall -std=c++17
 
 INCLUDES		 	:= src/
-DEPENDS			 	:= src/Crypto.cpp
+DEPENDS			 	:= src/*.cpp
 BIN_TESTER		:= bin/tester
 
 all : $(DEPENDS) $(BIN_TESTER)

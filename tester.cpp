@@ -10,8 +10,9 @@ int main(int argc, char ** argv) {
   key.charToDec();
 
   int tern[3] = {0, 0, 2};
-  Crypto::RGB let(tern);
-  let.getCode();
+  Crypto::RGB rgb(tern);
+  rgb.getCode();
 
+  rgb.showDot(); 
   return 0;
 }

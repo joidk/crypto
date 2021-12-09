@@ -1,5 +1,29 @@
 #include "Crypto.h"
 
+
+unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1}, {2, 1, 0}, {1, 0, 2}};
+
+/*
+ *  
+ */
+Crypto::Crypto(std::string message) {
+  this->msg = message;
+  //RGB::matrix = {{0, 2, 1}, {2, 1, 0}, {1, 0, 2}};
+}
+
+/*
+ *
+ */
+unsigned int Crypto::RGB::dot(int i, int j) {
+  return RGB::matrix[i][j];
+}
+
+void Crypto::RGB::showDot() {
+  for(int i = 0; i < 3; i++)
+    for(int j = 0; j < 3; j ++)
+      printf("\t<%d, %d> = %d\n", i, j, Crypto::RGB::matrix[i][j]);
+}
+
 /*
  *  Show message on screen
  */
