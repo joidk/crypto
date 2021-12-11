@@ -5,8 +5,7 @@
 
 class Crypto {
   public:
-    //Crypto(std::string message) : msg(message) {;}
-    Crypto(std::string message);
+    Crypto(std::string message) : msg(message) {;}
     ~Crypto() = default;
     
     void showMsg();
@@ -15,8 +14,10 @@ class Crypto {
   class RGB {
     public:
       RGB(int* num) : ternary(num) {;}
+      ~RGB() = default;
+
       char* getCode();
-      static unsigned int matrix[3][3];// = {{0, 2, 1}, {2, 1, 0}, {1, 0, 2}};
+      static unsigned int matrix[3][3];
       unsigned int dot(int, int);
 
       void showDot();

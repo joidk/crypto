@@ -1,18 +1,11 @@
 #include "Crypto.h"
 
-
-unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1}, {2, 1, 0}, {1, 0, 2}};
-
-/*
- *  
- */
-Crypto::Crypto(std::string message) {
-  this->msg = message;
-  //RGB::matrix = {{0, 2, 1}, {2, 1, 0}, {1, 0, 2}};
-}
+unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1},
+                                          {2, 1, 0},
+                                          {1, 0, 2}};
 
 /*
- *
+ *  Produces operation 
  */
 unsigned int Crypto::RGB::dot(int i, int j) {
   return RGB::matrix[i][j];
@@ -41,12 +34,11 @@ void Crypto::charToDec() {
   for(int i = 0; i < size; i++) {
     if('A' <= msg[i] && msg[i] <= 'Z')
       msg[i] = msg[i] - ('A' - 'a');
-    
+
     decArr[i] = msg[i] - 'a';
     if(msg[i] < 'a' || msg[i] > 'z')
       decArr[i] = 26;
   }
-  //printf("%d %c  :  sChar: %d \n", msg[1], msg[1], sChar);
 }
 
 char* Crypto::RGB::getCode() {
@@ -54,3 +46,5 @@ char* Crypto::RGB::getCode() {
   //printf("[%c, %c, %c]", code[2], code[1], code[0]);
   return this->code;
 }
+
+
