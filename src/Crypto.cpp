@@ -1,14 +1,26 @@
 #include "Crypto.h"
 
-unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1},
-                                          {2, 1, 0},
-                                          {1, 0, 2}};
+char Crypto::RGB::symbols[3]            = { 'R', 'G', 'B' };
+unsigned int Crypto::RGB::matrix[3][3]  = { {0, 2, 1},
+                                            {2, 1, 0},
+                                            {1, 0, 2} };
 
 /*
  *  Produces operation 
  */
 unsigned int Crypto::RGB::dot(int i, int j) {
   return RGB::matrix[i][j];
+}
+
+/*
+ *  Checks if a certain number is RGB codable
+ */
+bool isCodable(int num) {
+  int csize = sizeof(Crypto::RGB::symbols) / sizeof(*Crypto::RGB::symbols);
+  for(int i = 0; i < csize; i++)
+    if(num == Crypto::RGB::symbols[i])
+      return true;
+  return false;
 }
 
 void Crypto::RGB::showDot() {
@@ -29,7 +41,6 @@ void Crypto::showMsg() {
  *  Converts char to decimal
  */
 void Crypto::charToDec() {
-  
   unsigned int decArr[msg.size()], size = msg.size();
   for(int i = 0; i < size; i++) {
     if('A' <= msg[i] && msg[i] <= 'Z')
