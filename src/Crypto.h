@@ -8,42 +8,33 @@
  */
 class Crypto {
   public:
-    Crypto(std::string msg_) : msg(msg_) {;}
+    Crypto() = default;
     ~Crypto() = default;
     
-    void showMsg();
-    void charToDec();
       
   class RGB {
     public:
-      //RGB(std::string message);
-      RGB(int* num) : ternary(num) {;}
+      RGB(std::string mes_);
       ~RGB() = default;
 
       static unsigned int matrix[3][3];
       static char symbols[3];
       
+      void decToTern();
+      void ternToCodedRGB();
       unsigned int dot(int, int);
       char* getCode();
+      void strToDec();
 
-      void showDot();
+      bool convert();
 
     private:
-      int* ternary;
       char code[3];
+      int* decimalArray;
+      int** ternArray;
+      char* RGBcode;
+      int Nchars;
+      std::string msg;
   };
 
-  private:
-    std::string msg;
-    //RGB rgb;
-
-  protected:
-    class FileHandler {
-      public:
-        FileHandler(std::string filename) : fname(filename) {;}
-        ~FileHandler() = default;
-
-      private:
-        std::string fname;
-    };
 };

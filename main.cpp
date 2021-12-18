@@ -1,11 +1,11 @@
 #include <iostream>
 
 #include "Crypto.h"
+#include <string>
 
 int main(int argc, char ** argv) {
-  
-  Crypto key(argc == 2 ? argv[1]: "isto é um teste");
-  key.showMsg();
-  key.charToDec();
+
+  const char* str = argc == 2 ? argv[1]: "isto é um teste";  
+  Crypto::RGB key(str);
   return 0;
 }

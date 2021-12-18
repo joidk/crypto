@@ -9,7 +9,7 @@ all : $(DEPENDS) $(BIN_TESTER)
 	test
 	
 test : $(DEPENDENCIES)
-	$(CC) $(CFLAGS) -o $(BIN_TESTER) tester.cpp $(DEPENDS) -I $(INCLUDES) 
+	$(CC) $(CFLAGS) -o $(BIN_TESTER) main.cpp $(DEPENDS) -I $(INCLUDES) 
 
 run :
 	./bin/tester
