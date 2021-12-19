@@ -7,17 +7,10 @@ unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1},
 
 bool Crypto::RGB::convert() {
   strToDec();
-
-  for (int i = 0; i < Nchars; ++i) {
-    std::cout << decimalArray[i] << std::endl;
-  }
-
- /* decToTern();
-  for (int i = 0; i < 3*Nchars; ++i) {
-    std::cout << ternArray[i] << std::endl;
-  }
+  decToTern();
   ternToCodedRGB();
-*/
+  printf("%.*s \n", 3*Nchars, RGBcode);
+
   return true;
 }
 
@@ -33,15 +26,10 @@ Crypto::RGB::RGB(std::string mes_) {
  *  Produces operation 
  */
 void Crypto::RGB::decToTern() {
-    
-  for (int i = 0; i < Nchars; ++i) {
-    std::cout << decimalArray[i] << std::endl;
-  }
-  std::cout << std::endl;
 
     int* decmsg = decimalArray; 
     //int size = sizeof(decmsg) / sizeof(int);
-    int termsg[Nchars*3];
+    int* termsg = new int[Nchars*3];
 
     for(int j = 0; j < Nchars; ++j) {
         int i = 2;
@@ -65,30 +53,33 @@ unsigned int Crypto::RGB::dot(int i, int j) {
 /*
  *  Checks if a certain number is RGB codable
  */
-
 void Crypto::RGB::ternToCodedRGB() {
-  /*int r0, r1, r2;
-  for(int i = 0; i < this->Nchars; i++) {
-    r0 = ternArray[i][0];
-    r1 = RGB::matrix[ ternArray[i][0] ][ ternArray[i][1] ];
-    r2 = RGB::matrix[ r2 ][ ternArray[i][2] ];
 
-    printf("(%c, %c, %c)\t", symbols[r0], symbols[r1], symbols[r2]); 
-  */}
+  char* cRGBcode = new char[3*Nchars];
+  for(int i = 0; i < 3*Nchars - 2; i+=3) {
+    cRGBcode[i] = symbols[ ternArray[i] ];
+    int r = RGB::matrix[ ternArray[i] ][ ternArray[i+1] ];
+    cRGBcode[i+1] = symbols[ r ];
+    cRGBcode[i+2] = symbols[ RGB::matrix[ r ][ ternArray[i+2] ] ];
+  }
+  RGBcode = cRGBcode;
+}
 
+/*
 bool isCodable(int num) {
   int csize = sizeof(Crypto::RGB::symbols) / sizeof(*Crypto::RGB::symbols);
   for(int i = 0; i < csize; i++)
     if(num == Crypto::RGB::symbols[i])
       return true;
   return false;
-}
+}*/
 
 /*
  *  Converts char to decimal
  */
 void Crypto::RGB::strToDec() {
-  static int decArr[msg.size()], size = msg.size();
+  int* decArr = new int[msg.size()];
+  int size = msg.size();
   for(int i = 0; i < size; i++) {
 
     if('A' <= msg[i] && msg[i] <= 'Z')
@@ -100,10 +91,6 @@ void Crypto::RGB::strToDec() {
   }
   //static int cop[] = decArr;
   decimalArray = decArr;
-
-  for (int i = 0; i < Nchars; ++i) {
-    std::cout << decimalArray[i] << std::endl;
-  }
 }
 
 

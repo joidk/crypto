@@ -35,6 +35,7 @@ class Crypto {
       int* ternArray;
       char* RGBcode;
       std::string msg;
+      
   };
 
 };
