@@ -88,7 +88,7 @@ bool isCodable(int num) {
  *  Converts char to decimal
  */
 void Crypto::RGB::strToDec() {
-  int decArr[msg.size()], size = msg.size();
+  static int decArr[msg.size()], size = msg.size();
   for(int i = 0; i < size; i++) {
 
     if('A' <= msg[i] && msg[i] <= 'Z')
@@ -98,8 +98,12 @@ void Crypto::RGB::strToDec() {
     if(msg[i] < 'a' || msg[i] > 'z')
       decArr[i] = 26;
   }
-  static int* cop = decArr;
-  decimalArray = cop;
+  //static int cop[] = decArr;
+  decimalArray = decArr;
+
+  for (int i = 0; i < Nchars; ++i) {
+    std::cout << decimalArray[i] << std::endl;
+  }
 }
 
 
