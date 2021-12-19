@@ -31,9 +31,9 @@ class Crypto {
     private:
       char code[3];
       int* decimalArray;
-      int** ternArray;
-      char* RGBcode;
       int Nchars;
+      int* ternArray;
+      char* RGBcode;
       std::string msg;
   };
 
