@@ -5,6 +5,9 @@ unsigned int Crypto::RGB::matrix[3][3] = {{0, 2, 1},
                                           {2, 1, 0},
                                           {1, 0, 2}};
 
+/*
+ * Convert string to RGBcode
+ */
 bool Crypto::RGB::convert() {
   strToDec();
   decToTern();
@@ -14,7 +17,9 @@ bool Crypto::RGB::convert() {
   return true;
 }
 
-
+/*
+ *  Constructor - reads strings as argument
+ */ 
 Crypto::RGB::RGB(std::string mes_) {
   Nchars = mes_.size();
   msg = mes_;
@@ -23,59 +28,21 @@ Crypto::RGB::RGB(std::string mes_) {
 }
 
 /*
- *  Produces operation 
+ *  Constructor - reads string from a File
  */
-void Crypto::RGB::decToTern() {
+Crypto::RGB::RGB(std::ifstream& F) {
+  std::string text;
+  msg = "";
 
-    int* decmsg = decimalArray; 
-    //int size = sizeof(decmsg) / sizeof(int);
-    int* termsg = new int[Nchars*3];
+  while(getline(F,text))
+    msg += text;
+  Nchars = msg.size();
 
-    for(int j = 0; j < Nchars; ++j) {
-        int i = 2;
-        do {
-            if(decmsg[j] != 0) {
-                termsg[j*3+i] = decmsg[j] % 3;
-                decmsg[j] = (int)decmsg[j] / 3;
-            } else
-              termsg[j*3+i] = 0;
-            --i;
-        } while(i > -1);
-    }
-
-    ternArray = termsg;
-  }
-
-unsigned int Crypto::RGB::dot(int i, int j) {
-  return RGB::matrix[i][j];
+  convert();
 }
 
 /*
- *  Checks if a certain number is RGB codable
- */
-void Crypto::RGB::ternToCodedRGB() {
-
-  char* cRGBcode = new char[3*Nchars];
-  for(int i = 0; i < 3*Nchars - 2; i+=3) {
-    cRGBcode[i] = symbols[ ternArray[i] ];
-    int r = RGB::matrix[ ternArray[i] ][ ternArray[i+1] ];
-    cRGBcode[i+1] = symbols[ r ];
-    cRGBcode[i+2] = symbols[ RGB::matrix[ r ][ ternArray[i+2] ] ];
-  }
-  RGBcode = cRGBcode;
-}
-
-/*
-bool isCodable(int num) {
-  int csize = sizeof(Crypto::RGB::symbols) / sizeof(*Crypto::RGB::symbols);
-  for(int i = 0; i < csize; i++)
-    if(num == Crypto::RGB::symbols[i])
-      return true;
-  return false;
-}*/
-
-/*
- *  Converts char to decimal
+ *  Convert string to decimal
  */
 void Crypto::RGB::strToDec() {
   int* decArr = new int[msg.size()];
@@ -93,4 +60,48 @@ void Crypto::RGB::strToDec() {
   decimalArray = decArr;
 }
 
+/*
+ *  Convert decimal to ternary 
+ */
+void Crypto::RGB::decToTern() {
+
+  int* decmsg = decimalArray; 
+  int* termsg = new int[Nchars*3];
+
+  for(int j = 0; j < Nchars; ++j) {
+    int i = 2;
+    do {
+      if(decmsg[j] != 0) {
+        termsg[j*3+i] = decmsg[j] % 3;
+        decmsg[j] = (int)decmsg[j] / 3;
+      } else
+      termsg[j*3+i] = 0;
+      --i;
+    } while(i > -1);
+  }
+
+  ternArray = termsg;
+}
+
+/*
+ *  Convert ternary to RGB code using a predefined dot product(matrix)
+ */
+void Crypto::RGB::ternToCodedRGB() {
+
+  char* cRGBcode = new char[3*Nchars];
+  for(int i = 0; i < 3*Nchars - 2; i+=3) {
+    cRGBcode[i] = symbols[ ternArray[i] ];
+    int r = RGB::matrix[ ternArray[i] ][ ternArray[i+1] ];
+    cRGBcode[i+1] = symbols[ r ];
+    cRGBcode[i+2] = symbols[ RGB::matrix[ r ][ ternArray[i+2] ] ];
+  }
+  RGBcode = cRGBcode;
+}
+
+/*
+ *  Dot product used
+ */ 
+unsigned int Crypto::RGB::dot(int i, int j) {
+  return RGB::matrix[i][j];
+}
 
