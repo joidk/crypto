@@ -15,15 +15,18 @@ class Crypto {
       
   class RGB {
     public:
-      RGB(std::string mes_); // Constructor - reads strings as argument
-      RGB(std::ifstream& F); // Constructor - reads string from a File
+      RGB(std::string mes_);        // Constructor - reads strings as argument
+      RGB(std::ifstream& F);        // Constructor - reads string from a File
       ~RGB() = default;
       
-      bool convert(); //  Convert string to RGBcode
-      void strToDec(); // Convert string to decimal
-      void decToTern(); //  Convert decimal to ternary
-      void ternToCodedRGB(); // Convert ternary to RGB code using a predefined dot product(matrix)
-      unsigned int dot(int, int); //  Dot product used
+      bool convert();               //  Convert string to RGBcode
+      void strToDec();              // Convert string to decimal
+      void decToTern();             //  Convert decimal to ternary
+      void ternToCodedRGB();        // Convert ternary to RGB code using a predefined dot product(matrix)
+      unsigned int dot(int, int);   //  Dot product used
+      
+      std::string message() const;
+      std::string rgbcode() const;
 
       static unsigned int matrix[3][3];
       static char symbols[3];
@@ -34,7 +37,5 @@ class Crypto {
       int* decimalArray; // message as decimal
       int* ternArray; // message as ternary
       char* RGBcode; // message as RGBcode
-
   };
-
 };

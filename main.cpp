@@ -3,12 +3,17 @@
 #include <string>
 
 #include "Crypto.h"
+#include "RGBImage.h"
 
 int main(int argc, char ** argv) {
 
-  const char* str = argc == 2 ? argv[1]: "isto e um teste";  
-  std::ifstream F("a.txt");
-  Crypto::RGB key(F);
-  Crypto::RGB chain(str);
+  const char* saviorMsg = "you sent no arguments so i came to save the build";
+  const char* str = argc == 2 ? argv[1]: saviorMsg;
+
+  std::ifstream file("./docs/message.txt");
+  Crypto::RGB key(file);
+
+  RGBImage image("encoded.bmp", key.rgbcode());
+
   return 0;
 }

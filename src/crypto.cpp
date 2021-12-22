@@ -12,7 +12,7 @@ bool Crypto::RGB::convert() {
   strToDec();
   decToTern();
   ternToCodedRGB();
-  printf("%.*s \n", 3*Nchars, RGBcode);
+  //printf("%.*s \n", 3*Nchars, RGBcode);
 
   return true;
 }
@@ -105,3 +105,5 @@ unsigned int Crypto::RGB::dot(int i, int j) {
   return RGB::matrix[i][j];
 }
 
+std::string Crypto::RGB::message() const {  return this->msg; }
+std::string Crypto::RGB::rgbcode() const {  return std::string(this->RGBcode); }
