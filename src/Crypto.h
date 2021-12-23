@@ -20,9 +20,9 @@ class Crypto {
       ~RGB() = default;
       
       bool convert();               //  Convert string to RGBcode
-      void strToDec();              // Convert string to decimal
+      void strToDec();              //  Convert string to decimal
       void decToTern();             //  Convert decimal to ternary
-      void ternToCodedRGB();        // Convert ternary to RGB code using a predefined dot product(matrix)
+      void ternToCodedRGB();        //  Convert ternary to RGB code using a predefined dot product(matrix)
       unsigned int dot(int, int);   //  Dot product used
       
       std::string message() const;
@@ -32,10 +32,10 @@ class Crypto {
       static char symbols[3];
 
     private:
-      std::string msg; // message as string
-      int Nchars; // message's size
-      int* decimalArray; // message as decimal
-      int* ternArray; // message as ternary
-      char* RGBcode; // message as RGBcode
+      std::string msg;              // message as string
+      int Nchars;                   // message's size
+      int* decimalArray;            // message as decimal
+      int* ternArray;               // message as ternary
+      char* RGBcode;                // message as RGBcode
   };
 };
