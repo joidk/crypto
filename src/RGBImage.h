@@ -70,9 +70,10 @@ struct RGBImage {
     infoHeader[12]  = (unsigned char)(1);
     infoHeader[14]  = (unsigned char)(BYTES_PER_PIXEL * 8);
     
-    //  write memory to file
+    //  write memory into file
     fwrite(fileHeader, 1, FILE_HEADER_SIZE, imgFile);
     fwrite(infoHeader, 1, INFO_HEADER_SIZE, imgFile);
+    
     for(int i = 0; i < ROWS; i++) {
       fwrite(BMcode + i * rowInBytes, BYTES_PER_PIXEL, COLS, imgFile);
       fwrite(padding, 1, paddingSize, imgFile);

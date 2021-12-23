@@ -7,13 +7,12 @@
 
 int main(int argc, char ** argv) {
 
-  const char* saviorMsg = "you sent no arguments so i came to save the build";
-  const char* str = argc == 2 ? argv[1]: saviorMsg;
-
+  const char* str = (argc == 2) ? argv[1]: "you passed no arguments so i came here to save you";
+  
   std::ifstream file("./docs/message.txt");
-  Crypto::RGB key(file);
-
-  RGBImage image("encoded.bmp", key.rgbcode());
-
+  Crypto::RGB code(file);
+  
+  RGBImage image("encoded.bmp", code.rgbcode());
+  
   return 0;
 }

@@ -12,7 +12,6 @@ bool Crypto::RGB::convert() {
   strToDec();
   decToTern();
   ternToCodedRGB();
-  //printf("%.*s \n", 3*Nchars, RGBcode);
 
   return true;
 }
@@ -56,7 +55,6 @@ void Crypto::RGB::strToDec() {
     if(msg[i] < 'a' || msg[i] > 'z')
       decArr[i] = 26;
   }
-  //static int cop[] = decArr;
   decimalArray = decArr;
 }
 
@@ -101,7 +99,7 @@ void Crypto::RGB::ternToCodedRGB() {
 /*
  *  Dot product used
  */ 
-unsigned int Crypto::RGB::dot(int i, int j) {
+unsigned int Crypto::RGB::dot(int i, int j) const {
   return RGB::matrix[i][j];
 }
 
